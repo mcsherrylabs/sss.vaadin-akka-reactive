@@ -1,16 +1,21 @@
-version := "0.3-SNAPSHOT"
+version := "0.4-SNAPSHOT"
 
-scalaVersion := "2.11.8"
+scalaVersion := "2.12.6"
 
-val vaadinVer = "7.5.8"
+val vaadinVer = "7.7.13"
+
+resolvers += "stepsoft" at "http://nexus.mcsherrylabs.com/repository/releases"
+
+resolvers += "stepsoft-snapshots" at "http://nexus.mcsherrylabs.com/repository/snapshots"
+
+updateOptions := updateOptions.value.withGigahorse(false)
 
 libraryDependencies ++= Seq(
-  "com.typesafe.akka" %% "akka-actor" % "2.4.0",
-  "com.typesafe.akka" %% "akka-remote" % "2.4.0",
+  "com.typesafe.akka" %% "akka-actor" % "2.5.+",
   "com.vaadin" % "vaadin-server" % vaadinVer,
   "com.vaadin" % "vaadin-themes" % vaadinVer,
   "com.vaadin" % "vaadin-push" % vaadinVer,
   "com.vaadin" % "vaadin-client-compiler" % vaadinVer,
   "com.vaadin" % "vaadin-client-compiled" % vaadinVer,
-  "mcsherrylabs.com" %% "sss-ancillary" % "0.9.+"
+  "com.mcsherrylabs" %% "sss-ancillary" % "1.4-SNAPSHOT"
 )

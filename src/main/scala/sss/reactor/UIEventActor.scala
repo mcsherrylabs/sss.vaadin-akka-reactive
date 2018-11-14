@@ -13,7 +13,8 @@ abstract class UIEventActor extends Actor with ActorLogging {
     case UIEventActorSetup(reactor: ActorRef, eventBroadcastEndpoint: ActorRef, ui: UI) =>
       context.become(commonHandler(reactor, eventBroadcastEndpoint, ui) orElse react(reactor, eventBroadcastEndpoint, ui))
 
-    case x => log.warning(s"Not set up yet, cannot deal with $x")
+    case x => log.warning(s"Not set up yet, punting $x")
+      self forward x
 
   }
 
@@ -22,12 +23,15 @@ abstract class UIEventActor extends Actor with ActorLogging {
     case l: ListenTo => reactor ! l
     case s: StopListeningTo => reactor ! s
 
-    case Push(f) => ui.access(new Runnable {
+    case Push(f) => Try(ui.access(new Runnable {
       def run = Try { f() } match {
         case Failure(x) => log.error(x, "Failed to push changes to ui!")
         case Success(_) =>
       }
-    })
+    })) match {
+      case Failure(e) => log.error(e, "Failed to access ui from worker thread!")
+      case Success(_) =>
+    }
 
     case r @ Register(eventCategory) => eventBroadcastEndpoint ! r
     case r @ UnRegister(eventCategory) => eventBroadcastEndpoint ! r

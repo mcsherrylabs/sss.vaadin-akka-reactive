@@ -4,6 +4,7 @@ import akka.actor.ActorRef
 import com.vaadin.data.Property.ValueChangeListener
 import com.vaadin.event.FieldEvents.BlurListener
 import com.vaadin.ui.Button.ClickListener
+import com.vaadin.ui.TabSheet.SelectedTabChangeListener
 import com.vaadin.ui.{Component, UI}
 
 /**
@@ -17,6 +18,8 @@ package object reactor {
   implicit def conv2(uiReactor: UIReactor): ClickListener = uiReactor.createListener[ClickListener]
 
   implicit def conv3(uiReactor: UIReactor): ValueChangeListener = uiReactor.createListener[ValueChangeListener]
+
+  implicit def conv4(uiReactor: UIReactor): SelectedTabChangeListener = uiReactor.createListener[SelectedTabChangeListener]
 
   case class ListenTo(component: Component)
   case class StopListeningTo(component: Component)

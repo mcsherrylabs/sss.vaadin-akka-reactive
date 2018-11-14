@@ -6,6 +6,7 @@ import akka.actor.{ActorRef, ActorSystem, Props}
 import sss.ancillary.ReflectionUtils
 import com.vaadin.ui.{Component, UI}
 
+import scala.concurrent.duration._
 import scala.language.{dynamics, implicitConversions}
 import scala.reflect.runtime.universe._
 
