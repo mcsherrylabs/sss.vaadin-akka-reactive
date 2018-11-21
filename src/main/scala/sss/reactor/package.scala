@@ -1,12 +1,12 @@
 package sss.ui
 
 import akka.actor.ActorRef
-import com.vaadin.data.Property.ValueChangeListener
+import com.vaadin.data.HasValue.ValueChangeListener
 import com.vaadin.event.FieldEvents.BlurListener
 import com.vaadin.ui.Button.ClickListener
 import com.vaadin.ui.TabSheet.SelectedTabChangeListener
 import com.vaadin.ui.{Component, UI}
-
+import scala.reflect.runtime.universe._
 /**
  *
  */
@@ -17,7 +17,7 @@ package object reactor {
 
   implicit def conv2(uiReactor: UIReactor): ClickListener = uiReactor.createListener[ClickListener]
 
-  implicit def conv3(uiReactor: UIReactor): ValueChangeListener = uiReactor.createListener[ValueChangeListener]
+  implicit def conv3[T: TypeTag](uiReactor: UIReactor): ValueChangeListener[T] = uiReactor.createListener[ValueChangeListener[T]]
 
   implicit def conv4(uiReactor: UIReactor): SelectedTabChangeListener = uiReactor.createListener[SelectedTabChangeListener]
 

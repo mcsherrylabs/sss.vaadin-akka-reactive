@@ -2,7 +2,7 @@ version := "0.4-SNAPSHOT"
 
 scalaVersion := "2.12.6"
 
-val vaadinVer = "7.7.13"
+val vaadinVer = "8.5.2"
 
 resolvers += "stepsoft" at "http://nexus.mcsherrylabs.com/repository/releases"
 
