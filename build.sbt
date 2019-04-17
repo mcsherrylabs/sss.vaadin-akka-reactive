@@ -17,5 +17,5 @@ libraryDependencies ++= Seq(
   "com.vaadin" % "vaadin-push" % vaadinVer,
   "com.vaadin" % "vaadin-client-compiler" % vaadinVer,
   "com.vaadin" % "vaadin-client-compiled" % vaadinVer,
-  "com.mcsherrylabs" %% "sss-ancillary" % "1.4-SNAPSHOT"
+  "com.mcsherrylabs" %% "sss-ancillary" % "1.5-SNAPSHOT"
 )
