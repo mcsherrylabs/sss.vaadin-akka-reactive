@@ -1,8 +1,8 @@
 version := "0.4-SNAPSHOT"
 
-scalaVersion := "2.12.6"
+scalaVersion := "2.12.8"
 
-val vaadinVer = "8.5.2"
+val vaadinVer = "8.6-SNAPSHOT"
 
 resolvers += "stepsoft" at "http://nexus.mcsherrylabs.com/repository/releases"
 
