@@ -41,7 +41,7 @@ abstract class UIEventActor extends Actor with ActorLogging {
       context.become(setup)
   }
 
-  def push(f: => Unit) = self ! Push(f _)
+  def push(f: () => Unit) = self ! Push(f)
 
   def react(reactor: ActorRef, broadcaster: ActorRef, ui: UI): Receive
 
